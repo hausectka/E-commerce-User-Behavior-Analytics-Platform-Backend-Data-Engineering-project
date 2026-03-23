@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  dbt:
+    build: .
+    container_name: dbt-core
+    working_dir: /usr/app/my_dbt_project
+    volumes:
+      - ./my_dbt_project:/usr/app/my_dbt_project    # ← 폴더 전체 마운트 (핵심!)
+      - ./.dbt:/root/.dbt                           # profiles.yml 포함
+      - ./gcp-key.json:/usr/app/gcp-key.json
+    stdin_open: true
+    tty: true
+    ports:
+      - "7999:7999"
+    networks:
+      - airflow_dbt_net
+
+networks:
+  airflow_dbt_net:
+    external: true
