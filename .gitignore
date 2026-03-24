@@ -1,0 +1,39 @@
+# ── GCP Credentials ───────────────────────────────────────────────────────────
+# NEVER commit — contains full RSA private key for GCP service account
+dbt_project/gcp-key.json
+dbt_project/**/*.json
+
+# ── dbt Secrets & Machine-specific Config ─────────────────────────────────────
+# profiles.yml contains GCP project ID and keyfile path
+dbt_project/.dbt/profiles.yml
+# .user.yml is machine-specific (anonymous analytics ID)
+dbt_project/.dbt/.user.yml
+# dbt internal logs may contain query data
+dbt_project/.dbt/logs/
+
+# ── dbt Build Artifacts (generated, not source) ───────────────────────────────
+dbt_project/my_dbt_project/target/
+dbt_project/my_dbt_project/dbt_packages/
+dbt_project/my_dbt_project/logs/
+dbt_project/logs/
+
+# ── Airflow Secrets ───────────────────────────────────────────────────────────
+# airflow.cfg (and .example copy) contain fernet_key, secret_key, and jwt_secret
+airflow/config/airflow.cfg
+airflow/config/airflow.cfg.example
+# .env contains system UID/GID (machine-specific)
+airflow/.env
+# Airflow runtime data
+airflow/logs/
+airflow/data/
+
+# ── Claude Code IDE Settings (machine-specific) ───────────────────────────────
+.claude/
+
+# ── Python Cache ──────────────────────────────────────────────────────────────
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store

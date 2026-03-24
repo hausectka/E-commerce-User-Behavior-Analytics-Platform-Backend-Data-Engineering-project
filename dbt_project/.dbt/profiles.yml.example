@@ -1,0 +1,11 @@
+my_dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: YOUR_GCP_PROJECT_ID        # e.g. my-project-123456
+      keyfile: /usr/app/gcp-key.json      # path inside the dbt Docker container
+      dataset: my_dbt_project
+      threads: 4
+    
